@@ -5,49 +5,49 @@ int main(){
 
 int n;
 cin>> n ;
-vector<string> op;
-vector<string> np;
-map<string,int>mp;
-map<string,int>kmp;
-while (n--)
+vector<pair<string,string>> hn(n);
+
+
+for (int i = 0; i < n; i++)
 {
-    string key,value;
-    cin>> key>>value ;
 
-    mp[key]++;
-    mp[value]++;
-    kmp[key]++;
-    
+    cin>> hn[i].first>>hn[i].second ;
+
 }
 
 
-
-
-
-    for (auto it = mp.begin(); it != mp.end(); it++) {
-    string word = it->first;
-
-    if (it->second < 2 && kmp.count(word)) {
-        op.push_back(word);
-    }else if (it->second < 2)
+for (int i = 0; i < n; i++)
+{
+    for (int j = 0; j < n; j++)
     {
-        np.push_back(word);
+        if(i == j) continue;
+
+        if(hn[i].first == hn[j].second){
+            hn[j].second = hn[i].second;
+            hn[i].second = "no";
+        }
     }
     
 }
 
 
-    
-    cout<< op.size()<<'\n' ;
-    
-    for (int i = 0; i < op.size(); i++)
+
+int count = 0;
+
+    for (int i = 0; i < n; i++)
     {
-        cout<< op[i] << " "<<np[i] <<'\n' ;
-        
+        if(hn[i].second != "no") count++;
     }
     
-
+    cout<< count<<'\n' ;
     
+
+    for (int i = 0; i < n; i++)
+    {
+        if(hn[i].second != "no"){
+            cout<< hn[i].first <<" "<< hn[i].second<<'\n' ;
+        }
+    }
 
 
 
