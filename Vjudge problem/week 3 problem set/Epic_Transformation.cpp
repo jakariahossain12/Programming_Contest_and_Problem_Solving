@@ -21,12 +21,37 @@ while (t--)
 
         mp[x]++;
 
-        c = max(c,mp[x]);
+        
         
     }
 
-    cout<< max(2*c-n,n%2)<<'\n' ;
+    priority_queue<int> pq;
 
+for (auto m : mp) {
+    pq.push(m.second);
+}
+
+    while (!pq.empty())
+    {
+        if(pq.size() < 2) break;
+        int x,y;
+        x = pq.top();
+        pq.pop();
+        y = pq.top();
+        pq.pop();
+        x--; y--;
+        if(x >=1) pq.push(x);
+        if(y >=1) pq.push(y);
+    }
+
+    while (!pq.empty())
+    {
+        c+=pq.top();
+        pq.pop();
+    }
+    
+    cout<< c<<'\n' ;
+    
     
 }
 
