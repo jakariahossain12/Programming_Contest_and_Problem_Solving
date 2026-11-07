@@ -11,25 +11,26 @@ while (t--)
 {
     string s;
     cin>> s ;
-    int one = 0;
-    int zro = 0;
+   
+    string ans = "";
 
     for (int i = 0; i < s.size(); i++)
     {
-        if(one == 0 && s[i] == '1'){
-            s.erase(i,1);
-            i=0;
-            one++;
+        if(s[i] == '0'){
+            string temp = s;
+            temp.erase(i,1);
+
+            int p = temp.find('1');
+            temp.erase(p,1);
+
+            if(ans == "" || temp > ans){
+                ans = temp;
+            }
         }
-        if(zro == 0 && s[i] == '0'){
-            s.erase(i,1);
-            i=0;
-            zro++;
-        }
-        if(one == 1 && zro == 1) break;
+
     }
     
-    cout<< s<<"\n" ;
+    cout<< ans<<"\n" ;
     
 }
 

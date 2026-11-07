@@ -14,44 +14,28 @@ while (t--)
     string s;
     cin>> s ;
 
-    if(is_sorted(s.begin(),s.end())){
-        cout<< 0<<endl ;
-        continue;
+
+
+
+    if (is_sorted(s.begin(), s.end())) {
+        cout << 0 << "\n";
+        continue;;
     }
 
-    int zero = count(s.begin(),s.end(),'0');
-    int one = count(s.begin(),s.end(),'1');
-    if(s[n-1] == '0'){
-        cout<< one<<endl ;
-        continue;
-    }
+    int ans = 0;
+    int ones = 0;
 
-    bool is_back_one = false;
-    int one_count = 0;
-
-    for (int i = n-1; i >= 0; i--)
-    {
-        if(s[i] == '1' && is_back_one == false){
-            one_count++;
-        }
-
-
-
-        if(s[i] == '0' && is_back_one == false){
-            is_back_one = true;
-            one_count = 0;
-        }
-
-        if(s[i] == '1' && is_back_one == true){
-            one_count++;
-        }
-
-
-
-    }
     
-    cout<< one_count<<endl ;
-    
+    for (int i = 0; i < n; i++) {
+        if (s[i] == '1') {
+            ones++;
+        } else if (s[i] == '0' && ones > 0) {
+            ans += ones;
+            ones = 0; 
+        }
+    }
+
+    cout << ans << "\n";
     
     
 }
