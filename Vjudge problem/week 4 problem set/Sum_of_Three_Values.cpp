@@ -1,33 +1,55 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+#define ll long long
 int main(){
 ios::sync_with_stdio(false);
 cin.tie(nullptr);
-
-int n,x;
+int n;
+ll x;
 cin>> n>>x ;
-bool is_f = true;
-map<int ,int> mp;
-map<int ,int> mp2;
+
+vector<pair<ll,int>> a(n);
+for (int i = 0; i < n; i++)
+{
+    cin>> a[i].first ;
+    a[i].second = i+1;
+}
+
+sort(a.begin(),a.end());
+
+bool is = true;
 
 for (int i = 0; i < n; i++)
 {
-    int v;
-    cin>> v ;
+    int l = i+1;
+    int r = n-1;
 
-    int f = x - v;
+    bool st = false;
 
-    if(mp.find(f) != mp.end()){
-        cout<< mp[f]+1 <<" "<<i+1 ;
-        is_f = false;
-        break;
+    while (l<r)
+    {
+        ll sum = a[i].first + a[l].first + a[r].first;
+
+        if(sum == x){
+            cout<< a[i].second << " "<< a[l].second<<" "<<a[r].second ;
+            is = false;
+            st = true;
+            break;
+        }else if (sum < x)
+        {
+            l++;
+        }else
+        {
+            r--;
+        }
     }
-    mp[v]=i;
+    
+    if(st)break;
 }
 
-if(is_f){
+if(is){
     cout<< "IMPOSSIBLE" ;
+    
 }
 
 
