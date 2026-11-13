@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -19,14 +20,19 @@ int main() {
 
         for (int i = 0; i < n; i++) {
 
-            int lastTwo = (s[n - 2] - '0') * 10
-                        + (s[n - 1] - '0');
+            int f = i;
+            int l = (i+1)%n;
 
-            if (lastTwo % 4 == 0) {
+            cout<< f << " "<<l<<endl ;
+            
+
+
+            int num = (s[i] - '0') * 10
+                    + (s[(i + 1) % n] - '0');
+
+            if (num % 4 == 0) {
                 ans++;
             }
-
-            rotate(s.begin(), s.begin() + 1, s.end());
         }
 
         cout << ans << '\n';
