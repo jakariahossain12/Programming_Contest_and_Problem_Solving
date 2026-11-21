@@ -18,19 +18,35 @@ while (t--)
     for(auto &i : a)cin>> i ;
 
 
-    int l = 0;
-    int r = n-1;
+    bool pal = true;
+    vector<int> fre(n+1,0);
 
-    while (l < r)
+    
+    for (int i = 0; i < n; i++)
     {
-        if(a[l] == a[r]);
-        l++;
-        r--;
+        if(a[i] != a[n-i-1]){
+            pal = false;
+        } 
+        fre[a[i]]++;
     }
     
-    if(l >= r){
-        cout<< "NO"<<endl ;
+
+    if(pal) cout<< "NO" <<endl;
+    else    
+    {
+        int v = 1;
+
+        for (int i = 1; i <= n; i++)
+        {
+            if(fre[i] == 0){
+                v = i; break;
+            }
+        }
+        
+        cout<< "YES "<<v<<endl ;
+        
     }
+    
     
 
     
